@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>invui</artifactId>
-    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -19,140 +18,47 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.21.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>xyz.xenondevs.invui</groupId>
             <artifactId>invui-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r1</artifactId>
+            <artifactId>inventory-access-paper</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r2</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r3</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r4</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r5</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r6</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r7</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r8</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r9</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r10</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r11</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r12</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r13</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r14</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r15</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r16</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r17</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r18</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r19</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r20</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r21</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r22</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r23</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r24</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r25</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.xenondevs.invui</groupId>
-            <artifactId>inventory-access-r26</artifactId>
+            <artifactId>invui-kotlin</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

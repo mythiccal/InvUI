@@ -1,0 +1,4 @@
+name: InvUI
+version: ${project.version}
+main: xyz.xenondevs.invui.InvUIPlugin
+api-version: 1.21
