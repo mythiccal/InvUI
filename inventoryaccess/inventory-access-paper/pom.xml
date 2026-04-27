@@ -18,16 +18,17 @@
     </properties>
 
     <dependencies>
+        <!-- paper-server is Mojang-mapped: net.minecraft names match runtime. CMILib and other plugins must use Mojang NBT names (e.g. ListTag), not legacy NBTTagList. -->
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.1-R0.1-SNAPSHOT</version>
+            <version>${paper.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-server</artifactId>
-            <version>1.21.9-R0.1-SNAPSHOT</version>
+            <version>${paper.server.compile.version}</version>
             <classifier>mojang-mapped</classifier>
             <scope>provided</scope>
         </dependency>
