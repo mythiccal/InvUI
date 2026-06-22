@@ -14,17 +14,8 @@ public class AdventureComponentLocalizer extends ComponentLocalizer<Component> {
         return INSTANCE;
     }
     
-    @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     public Component localize(String lang, Component component) {
-        if (!(component instanceof BuildableComponent))
-            throw new IllegalStateException("Component is not a BuildableComponent");
-        
-        return localize(lang, (BuildableComponent) component);
-    }
-    
-    @SuppressWarnings("NonExtendableApiUsage")
-    private <C extends BuildableComponent<C, B>, B extends ComponentBuilder<C, B>> BuildableComponent<?, ?> localize(String lang, BuildableComponent<C, B> component) {
         ComponentBuilder<?, ?> builder;
         if (component instanceof TranslatableComponent) {
             builder = localizeTranslatable(lang, (TranslatableComponent) component).toBuilder();
@@ -41,12 +32,15 @@ public class AdventureComponentLocalizer extends ComponentLocalizer<Component> {
         return builder.build();
     }
     
-    private BuildableComponent<?, ?> localizeTranslatable(String lang, TranslatableComponent component) {
+    private Component localizeTranslatable(String lang, TranslatableComponent component) {
         var formatString = Languages.getInstance().getFormatString(lang, component.key());
         if (formatString == null)
             return component;
         
-        var children = decomposeFormatString(lang, formatString, component, component.args());
+        var args = component.arguments().stream()
+            .map(TranslationArgument::asComponent)
+            .toList();
+        var children = decomposeFormatString(lang, formatString, component, args);
         return Component.textOfChildren(children.toArray(ComponentLike[]::new)).style(component.style());
     }
     

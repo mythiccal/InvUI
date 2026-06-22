@@ -12,7 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Public API / Bukkit surface; see https://papermc.io/downloads/paper -->
-        <paper.version>26.1.2.build.51-beta</paper.version>
+        <paper.version>26.2.build.30-alpha</paper.version>
         <!-- paper-server (mojang-mapped) is not published for 26.1.x on repo.papermc.io yet; use latest SNAPSHOT that resolves for NMS compile. Override when Paper publishes matching paper-server for your runtime. -->
         <paper.server.compile.version>1.21.11-R0.1-SNAPSHOT</paper.server.compile.version>
         <!-- Third-party plugins that reflect NBT (e.g. CMILib) must ship builds for Mojang-mapped servers; outdated code using NBTTag* class names fails at runtime. -->
