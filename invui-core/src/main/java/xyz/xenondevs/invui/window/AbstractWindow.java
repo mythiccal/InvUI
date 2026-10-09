@@ -2,7 +2,6 @@ package xyz.xenondevs.invui.window;
 
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.HumanEntity;
@@ -34,6 +33,7 @@ import xyz.xenondevs.invui.inventory.event.UpdateReason;
 import xyz.xenondevs.invui.item.Item;
 import xyz.xenondevs.invui.item.ItemProvider;
 import xyz.xenondevs.invui.util.ArrayUtils;
+import xyz.xenondevs.invui.util.Schedulers;
 import xyz.xenondevs.invui.util.Pair;
 
 import java.util.*;
@@ -181,11 +181,9 @@ public abstract class AbstractWindow implements Window, GuiParent {
         }
         
         // Redraw all items after the event so there won't be any Items that aren't actually there
-        Bukkit.getScheduler().runTask(InvUI.getInstance().getPlugin(),
-            () -> event.getRawSlots().forEach(rawSlot -> {
-                if (getGuiAt(rawSlot) != null) redrawItem(rawSlot);
-            })
-        );
+        Schedulers.runFor(viewer, () -> event.getRawSlots().forEach(rawSlot -> {
+            if (getGuiAt(rawSlot) != null) redrawItem(rawSlot);
+        }));
         
         // update the amount on the cursor
         ItemStack cursorStack = event.getOldCursor();
@@ -331,7 +329,7 @@ public abstract class AbstractWindow implements Window, GuiParent {
                 closeHandlers.forEach(Runnable::run);
             }
         } else {
-            Bukkit.getScheduler().runTaskLater(InvUI.getInstance().getPlugin(), () -> openInventory(viewer), 0);
+            Schedulers.runFor(viewer, () -> openInventory(viewer));
         }
     }
     
